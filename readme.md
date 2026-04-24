@@ -1,6 +1,6 @@
-# Kafka Spring Boot Sandbox
+# Kafka Sandbox Consumer
 
-This project demonstrates a local Kafka setup using Docker + Spring Boot producer/consumer.
+This project demonstrates a local Kafka setup using Docker + Spring Boot consumer.
 
 We use:
 - Apache Kafka (Docker)
