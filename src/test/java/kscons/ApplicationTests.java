@@ -1,4 +1,4 @@
-package cj.ks.consumer;
+package kscons;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

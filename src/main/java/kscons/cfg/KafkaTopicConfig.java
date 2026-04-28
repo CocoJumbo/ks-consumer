@@ -1,4 +1,4 @@
-package cj.ks.consumer.cfg;
+package kscons.cfg;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class KafkaTopicConfig {
 
     @Bean
-    public NewTopic ordersTopic() {
+    public NewTopic simpleTopic() {
         return new NewTopic(
-                "orders",
+                "simple-topic",
                 // Topic name (must be unique in Kafka cluster)
                 // Used by producers/consumers to send/read messages
 
-                3,
+                1,
                 // Number of partitions
                 // -> Defines parallelism and scalability
                 // -> More partitions = more consumers can read in parallel
@@ -26,10 +26,5 @@ public class KafkaTopicConfig {
                 // -> 1 = no redundancy (OK for local dev)
                 // -> In production usually 2 or 3 for fault tolerance
         );
-    }
-
-    @Bean
-    public NewTopic paymentsTopic() {
-        return new NewTopic("payments", 2, (short) 1);
     }
 }

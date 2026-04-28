@@ -5,3 +5,15 @@ spring:
     bootstrap-servers: localhost:29092
     admin:
       auto-create: true
+  consumer:
+    #group-id → identifies your consumer group
+    #earliest → reads old messages (good for learning)
+    #byte deserializers → matches your Go producer ([]byte)
+    group-id: simple-group
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#logging:
+  #level:
+    #org.apache.kafka: DEBUG
