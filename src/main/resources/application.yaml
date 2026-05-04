@@ -1,18 +1,24 @@
 spring:
   application:
     name: ks.consumer
+
   kafka:
     bootstrap-servers: localhost:29092
+
     admin:
       auto-create: true
-  consumer:
-    #group-id → identifies your consumer group
-    #earliest → reads old messages (good for learning)
-    #byte deserializers → matches your Go producer ([]byte)
-    group-id: simple-group
-    auto-offset-reset: earliest
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    consumer:
+      group-id: simple-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+
+    properties:
+      spring.json.trusted.packages: "*"
+      #spring.json.value.default.type: kscons.dto.SimpleMessage
 
 #logging:
   #level:
