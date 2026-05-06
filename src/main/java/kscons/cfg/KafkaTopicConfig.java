@@ -27,4 +27,13 @@ public class KafkaTopicConfig {
                 // -> In production usually 2 or 3 for fault tolerance
         );
     }
+
+    @Bean
+    public NewTopic hashBalanced3PartitionsTopic() {
+        return new NewTopic(
+                "hash-balanced-3partition-topic",
+                3,
+                (short) 1
+        );
+    }
 }
