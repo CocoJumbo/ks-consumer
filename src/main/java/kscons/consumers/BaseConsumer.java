@@ -18,7 +18,24 @@ public class BaseConsumer {
     }
 
     @KafkaListener(topics = "simple-topic", groupId = "simple-group")
-    public void listenSimpleTopic(ConsumerRecord<String, String> record) throws Exception {
+    public void listenSimpleTopic(ConsumerRecord<String, String> record) {
+
+        SimpleMessage obj = objectMapper.readValue(record.value(), SimpleMessage.class);
+
+        log.info("🔥 RECEIVED: Value {}", obj.toString());
+
+        log.info("Kafka metadata → key={}, partition={}, offset={}",
+                record.key(),
+                record.partition(),
+                record.offset()
+        );
+
+        log.debug("Raw message: {}", record.value());
+    }
+
+
+    @KafkaListener(topics = "simple-topic", groupId = "another-simple-group")
+    public void listenSimpleTopicAnotherGroup(ConsumerRecord<String, String> record) {
 
         SimpleMessage obj = objectMapper.readValue(record.value(), SimpleMessage.class);
 
@@ -39,7 +56,7 @@ public class BaseConsumer {
             concurrency = "3"
     )
     // Messages with the same key → always go to the same partition!
-    public void listenHashTopic3partitions(ConsumerRecord<String, String> record) throws Exception {
+    public void listenHashTopic3partitions(ConsumerRecord<String, String> record) {
 
         SimpleMessage obj = objectMapper.readValue(record.value(), SimpleMessage.class);
 
@@ -61,7 +78,7 @@ public class BaseConsumer {
             groupId = "round-robin-balanced-3partition-group",
             concurrency = "3"
     )
-    public void listenRoundRobinTopic3partitions(ConsumerRecord<String, String> record) throws Exception {
+    public void listenRoundRobinTopic3partitions(ConsumerRecord<String, String> record) {
 
         SimpleMessage obj = objectMapper.readValue(record.value(), SimpleMessage.class);
 
