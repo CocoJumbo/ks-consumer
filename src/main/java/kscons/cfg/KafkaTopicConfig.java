@@ -36,4 +36,12 @@ public class KafkaTopicConfig {
                 (short) 1
         );
     }
+    @Bean
+    public NewTopic roundRobinBalanced3PartitionsTopic() {
+        return new NewTopic(
+                "round-robin-balanced-3partition-topic",
+                3,
+                (short) 1
+        );
+    }
 }
