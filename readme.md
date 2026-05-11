@@ -38,6 +38,9 @@ Run containers:
 docker compose up -d
 ```
 
-Run spring application:
+# 2. Run spring application:
 ```bash
 ./gradlew bootRun
+```
+
+# 3. Watching the application log
