@@ -17,7 +17,10 @@ public class BaseConsumer {
         this.objectMapper = objectMapper;
     }
 
-    @KafkaListener(topics = "simple-topic", groupId = "simple-group")
+    // Manual ack, while you rerun the spring app, listener of this topic will read from last manual commit offset
+    @KafkaListener(topics = "simple-topic",
+                   groupId = "simple-group",
+                   containerFactory = "manualAckFactory")
     public void listenSimpleTopic(ConsumerRecord<String, String> record) {
 
         SimpleMessage obj = objectMapper.readValue(record.value(), SimpleMessage.class);

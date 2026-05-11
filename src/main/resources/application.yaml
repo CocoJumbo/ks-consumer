@@ -23,3 +23,5 @@ spring:
 #logging:
   #level:
     #org.apache.kafka: DEBUG
+    #org.springframework.kafka.listener: DEBUG
+
